@@ -1,8 +1,7 @@
 # SnapShots
 
 a easy using toast in React
-![](https://res.unclewarren.cn/react-turnplate-snapshot.gif)
-
+![](https://user-gold-cdn.xitu.io/2019/5/18/16ac949855bdd316?w=360&h=360&f=gif&s=4345398)
 ---
 
 # react-turnplate
@@ -33,6 +32,9 @@ const reward_list = [{icon:'imageurl',name:'prize1',id:1},{icon:'imageurl',name:
 
 | params        | type   |  desc  |
 | --------   | -----:  | :----:  |
+| image_spin | string | spin button|
+| background_1 | string | background_1|
+| background_2 | string | background_2|
 | prizeList     | array |  [{icon:'imageurl',name:'prize1',id:1},{icon:'imageurl',name:'prize1',id:2}]    |
 | award        |   object  | award should be null first,after request  back return an object like prizelist[0]  |
 | canStartRotate        |    bool    |  control the turnplate should startRotate  |
