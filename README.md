@@ -41,6 +41,10 @@ const reward_list = [{icon:'imageurl',name:'prize1',id:1},{icon:'imageurl',name:
 |onTryRotate | func| trigger after click the rotate button,should do some check stuff and if it's ok,set canStartRotate to be true then the turnplate start rotating,meanwhile request for the award and after the request finish,set the award |
 |rotateFinish| func | |
 
+## more
+you can fork and check the example code to see the fully complishment.
+
+**If you have any of ideas,don't forget to leave an issue! And also star haha**
 
 ## License
 
