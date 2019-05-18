@@ -40,5 +40,14 @@
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.3.1",
     "babel-preset-stage-2": "^6.24.1"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.5.1",
+    "css-loader": "^2.1.1",
+    "file-loader": "^3.0.1",
+    "node-sass": "^4.11.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1"
   }
 }
