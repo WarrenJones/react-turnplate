@@ -20,14 +20,18 @@ $ npm install --save  react-turnplate
   }
 
 const reward_list = [{icon:'imageurl',name:'prize1',id:1},{icon:'imageurl',name:'prize1',id:2}]
- <ReactTurnPlate
-    prizeList={reward_list || []}
-    award={newLotteryReward}
-    canStartRotate={canStartRotate}
-    onTryRotate={this.onTryRotate.bind(this)}
-    rotateFinish={this.rotateFinish.bind(this)}
-    />
+  <ReactTurnPlate
+          prizeList={reward_list}
+          award={award}
+          image_spin={require("../src/img/btn_spin.png")}
+          background_1={require("../src/img/circle1_img.jpg")}
+          background_2={require("../src/img/circle2_img.jpg")}
+          canStartRotate={canStartRotate}
+          onTryRotate={this.onTryRotate.bind(this)}
+          rotateFinish={this.rotateFinish.bind(this)}
+        />
 ```
+you can also fork the code and `npm start` to run the example.
 
 ## props 
 
