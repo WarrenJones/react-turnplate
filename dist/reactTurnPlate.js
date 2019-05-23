@@ -37,11 +37,14 @@ var ReactTurnPlate = function (_React$Component) {
         justRotate: true
       };
     }
-  }, {
-    key: "shouldComponentUpdate",
-    value: function shouldComponentUpdate(nextProps, nextState) {
-      return !Object.is(this.state.rotating, nextState.rotating) || this.props.prizeList.length != nextProps.prizeList.length;
-    }
+
+    // shouldComponentUpdate(nextProps, nextState) {
+    //   return (
+    //     !Object.is(this.state.rotating, nextState.rotating) ||
+    //     this.props.prizeList.length != nextProps.prizeList.length
+    //   );
+    // }
+
   }, {
     key: "UNSAFE_componentWillReceiveProps",
     value: function UNSAFE_componentWillReceiveProps(nextProps, nextState) {
@@ -156,7 +159,9 @@ var ReactTurnPlate = function (_React$Component) {
   }, {
     key: "_getTurnPrizeList",
     value: function _getTurnPrizeList() {
-      var prizeList = this.props.prizeList;
+      var _props2 = this.props,
+          prizeList = _props2.prizeList,
+          needShowItemName = _props2.needShowItemName;
 
       var turnplateList = [];
       for (var i = 0; i < prizeList.length; i++) {
@@ -166,11 +171,11 @@ var ReactTurnPlate = function (_React$Component) {
           _react2.default.createElement(
             "div",
             { style: { transform: "rotate(" + i / prizeList.length + "turn)" } },
-            _react2.default.createElement(
+            needShowItemName && prizeList[i].name ? _react2.default.createElement(
               "div",
               null,
               prizeList[i].name
-            ),
+            ) : null,
             _react2.default.createElement("img", { src: prizeList[i].icon })
           )
         );
@@ -195,9 +200,9 @@ var ReactTurnPlate = function (_React$Component) {
   }, {
     key: "_lottery",
     value: function _lottery() {
-      var _props2 = this.props,
-          prizeList = _props2.prizeList,
-          award = _props2.award;
+      var _props3 = this.props,
+          prizeList = _props3.prizeList,
+          award = _props3.award;
       var lastRotateDeg = this.state.lastRotateDeg;
 
       var choosenIndex = 0;
@@ -256,9 +261,9 @@ var ReactTurnPlate = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _props3 = this.props,
-          background_2 = _props3.background_2,
-          image_spin = _props3.image_spin;
+      var _props4 = this.props,
+          background_2 = _props4.background_2,
+          image_spin = _props4.image_spin;
 
       var priceList = this._getTurnPrizeList();
       return _react2.default.createElement(
@@ -323,10 +328,13 @@ ReactTurnPlate.propTypes = {
   //背景1
   background_1: _propTypes2.default.string,
   //背景2
-  background_2: _propTypes2.default.string
+  background_2: _propTypes2.default.string,
+  //是否显示奖品的名字
+  needShowItemName: _propTypes2.default.bool
 };
 ReactTurnPlate.defaultProps = {
   canStartRotate: true,
-  prizeList: []
+  prizeList: [],
+  needShowItemName: true
 };
 exports.default = ReactTurnPlate;

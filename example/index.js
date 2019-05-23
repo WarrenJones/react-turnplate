@@ -43,6 +43,7 @@ class App extends React.Component {
         <ReactTurnPlate
           prizeList={reward_list}
           award={award}
+          needShowItemName={false}
           image_spin={require("../src/img/btn_spin.png")}
           background_1={require("../src/img/circle1_img.jpg")}
           background_2={require("../src/img/circle2_img.jpg")}

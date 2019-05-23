@@ -60,10 +60,11 @@
         img {
           width: px2vw(80px);
           height: px2vw(80px);
+          margin-top: px2vw(10px);
         }
         div {
           font-size:px2vw(28px);
-          padding: px2vw(10px) 0;
+          padding: px2vw(10px) 0 0 0;
           font-family: HelveticaNeue-Medium;
           font-weight: 500;
           color: rgba(127, 30, 11, 1);

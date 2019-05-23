@@ -19,14 +19,14 @@ export default class ReactTurnPlate extends React.Component {
     background_1: PropTypes.string,
     //背景2
     background_2: PropTypes.string,
-    //是否显示奖品的名字
-    needShowItemName: PropTypes.bool
+    //是否显示奖品的名字　
+    needShowItemName:PropTypes.bool
   };
 
   static defaultProps = {
     canStartRotate: true,
     prizeList: [],
-    needShowItemName: true
+    needShowItemName:true
   };
 
   _getInitialState() {
@@ -39,10 +39,7 @@ export default class ReactTurnPlate extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return (
-      !Object.is(this.state.rotating, nextState.rotating) ||
-      this.props.prizeList.length != nextProps.prizeList.length
-    );
+    return !Object.is(this.state.rotating, nextState.rotating)||this.props.prizeList.length != nextProps.prizeList.length;
   }
   UNSAFE_componentWillReceiveProps(nextProps, nextState) {
     if (this.props.prizeList.length != nextProps.prizeList.length) {
@@ -144,15 +141,13 @@ export default class ReactTurnPlate extends React.Component {
   }
 
   _getTurnPrizeList() {
-    const { prizeList, needShowItemName } = this.props;
+    const { prizeList,needShowItemName } = this.props;
     const turnplateList = [];
     for (let i = 0; i < prizeList.length; i++) {
       const turnplateItem = (
         <li className="turnplate-item" key={i}>
           <div style={{ transform: `rotate(${i / prizeList.length}turn)` }}>
-            {needShowItemName && prizeList[i].name ? (
-              <div>{prizeList[i].name}</div>
-            ) : null}
+            {needShowItemName&&prizeList[i].name?<div>{prizeList[i].name}</div>:null}
             <img src={prizeList[i].icon} />
           </div>
         </li>
@@ -184,7 +179,7 @@ export default class ReactTurnPlate extends React.Component {
     const rotateDeg =
       ((prizeList.length - choosenIndex) * 360) / prizeList.length + 360 * 5;
     this.setState({
-      lastRotateDeg: lastRotateDeg + 360 * 3,
+      lastRotateDeg: lastRotateDeg + 360 * 6,
       rotating: true,
       justRotate: false
     });
