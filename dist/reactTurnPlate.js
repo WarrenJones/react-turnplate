@@ -148,7 +148,7 @@ var ReactTurnPlate = function (_React$Component) {
     value: function _initFlash() {
       var background_1 = this.props.background_1;
 
-      this.outDiskDiffTimer = 100;
+      this.outDiskDiffTimer = 160;
       this.outShowImg1 = true;
       this._flashTimer = null;
       this.refs.turnplateBorder.style.backgroundImage = "url(" + background_1 + ")";
@@ -210,7 +210,7 @@ var ReactTurnPlate = function (_React$Component) {
         }
       }
       var container = document.getElementById("turnplate");
-      var rotateDeg = (prizeList.length - choosenIndex) * 360 / prizeList.length + 360 * 2;
+      var rotateDeg = (prizeList.length - choosenIndex) * 360 / prizeList.length + 360 * 5;
       this.setState({
         lastRotateDeg: lastRotateDeg + 360 * 3,
         rotating: true,
@@ -223,7 +223,7 @@ var ReactTurnPlate = function (_React$Component) {
     key: "_justRotate",
     value: function _justRotate() {
       var container = document.getElementById("turnplate");
-      var rotateDeg = 360 * 3;
+      var rotateDeg = 360 * 6;
       this.setState({
         lastRotateDeg: rotateDeg + this.state.lastRotateDeg,
         rotating: true,

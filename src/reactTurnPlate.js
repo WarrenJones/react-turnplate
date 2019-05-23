@@ -18,12 +18,15 @@ export default class ReactTurnPlate extends React.Component {
     //背景1
     background_1: PropTypes.string,
     //背景2
-    background_2: PropTypes.string
+    background_2: PropTypes.string,
+    //是否显示奖品的名字
+    needShowItemName: PropTypes.bool
   };
 
   static defaultProps = {
     canStartRotate: true,
-    prizeList: []
+    prizeList: [],
+    needShowItemName: true
   };
 
   _getInitialState() {
@@ -36,7 +39,10 @@ export default class ReactTurnPlate extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return !Object.is(this.state.rotating, nextState.rotating)||this.props.prizeList.length != nextProps.prizeList.length;
+    return (
+      !Object.is(this.state.rotating, nextState.rotating) ||
+      this.props.prizeList.length != nextProps.prizeList.length
+    );
   }
   UNSAFE_componentWillReceiveProps(nextProps, nextState) {
     if (this.props.prizeList.length != nextProps.prizeList.length) {
@@ -138,13 +144,15 @@ export default class ReactTurnPlate extends React.Component {
   }
 
   _getTurnPrizeList() {
-    const { prizeList } = this.props;
+    const { prizeList, needShowItemName } = this.props;
     const turnplateList = [];
     for (let i = 0; i < prizeList.length; i++) {
       const turnplateItem = (
         <li className="turnplate-item" key={i}>
           <div style={{ transform: `rotate(${i / prizeList.length}turn)` }}>
-            <div>{prizeList[i].name}</div>
+            {needShowItemName && prizeList[i].name ? (
+              <div>{prizeList[i].name}</div>
+            ) : null}
             <img src={prizeList[i].icon} />
           </div>
         </li>
