@@ -1,6 +1,7 @@
 @function px2vw($px, $base-font-size: 7.5px) {
   @return ($px / $base-font-size) * 1vw;
 }
+*{margin:0;padding:0;}
 .turnplate-border {
   width: px2vw(500px);
   height: px2vw(500px);
@@ -17,7 +18,6 @@
     transform: translate(-50%, -50%);
     width: px2vw(168px);
     height: px2vw(224px);
-   
   }
   .turnplate-wrapper {
     transition: all 3s linear;

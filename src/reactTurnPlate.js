@@ -36,7 +36,7 @@ export default class ReactTurnPlate extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return !Object.is(this.state.rotating, nextState.rotating);
+    return !Object.is(this.state.rotating, nextState.rotating)||this.props.prizeList.length != nextProps.prizeList.length;
   }
   UNSAFE_componentWillReceiveProps(nextProps, nextState) {
     if (this.props.prizeList.length != nextProps.prizeList.length) {

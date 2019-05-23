@@ -38,6 +38,11 @@ var ReactTurnPlate = function (_React$Component) {
       };
     }
   }, {
+    key: "shouldComponentUpdate",
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      return !Object.is(this.state.rotating, nextState.rotating);
+    }
+  }, {
     key: "UNSAFE_componentWillReceiveProps",
     value: function UNSAFE_componentWillReceiveProps(nextProps, nextState) {
       if (this.props.prizeList.length != nextProps.prizeList.length) {
@@ -60,7 +65,7 @@ var ReactTurnPlate = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (ReactTurnPlate.__proto__ || Object.getPrototypeOf(ReactTurnPlate)).apply(this, arguments));
 
-    _this.devicePixelRatio = document.getElementsByTagName("html")[0].dataset.dpr;
+    _this.devicePixelRatio = window.devicePixelRatio || 2;
     _this.state = _this._getInitialState();
     _this._initFlash = _this._initFlash.bind(_this);
     _this._outDiscFlash = _this._outDiscFlash.bind(_this);
