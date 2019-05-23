@@ -35,7 +35,7 @@ class App extends React.Component {
     }, 2000);
   }
   rotateFinish() {
-    alert("congradulations! you got ", this.state.award.name);
+    alert("congradulations! you got " + this.state.award.name);
   }
   render() {
     const { award, canStartRotate } = this.state;

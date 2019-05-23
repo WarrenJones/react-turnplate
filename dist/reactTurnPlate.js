@@ -40,7 +40,7 @@ var ReactTurnPlate = function (_React$Component) {
   }, {
     key: "shouldComponentUpdate",
     value: function shouldComponentUpdate(nextProps, nextState) {
-      return !Object.is(this.state.rotating, nextState.rotating);
+      return !Object.is(this.state.rotating, nextState.rotating) || this.props.prizeList.length != nextProps.prizeList.length;
     }
   }, {
     key: "UNSAFE_componentWillReceiveProps",
