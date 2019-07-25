@@ -37,14 +37,11 @@ var ReactTurnPlate = function (_React$Component) {
         justRotate: true
       };
     }
-
-    // shouldComponentUpdate(nextProps, nextState) {
-    //   return (
-    //     !Object.is(this.state.rotating, nextState.rotating) ||
-    //     this.props.prizeList.length != nextProps.prizeList.length
-    //   );
-    // }
-
+  }, {
+    key: "shouldComponentUpdate",
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      return !Object.is(this.state.rotating, nextState.rotating) || this.props.prizeList.length != nextProps.prizeList.length;
+    }
   }, {
     key: "UNSAFE_componentWillReceiveProps",
     value: function UNSAFE_componentWillReceiveProps(nextProps, nextState) {
@@ -217,7 +214,7 @@ var ReactTurnPlate = function (_React$Component) {
       var container = document.getElementById("turnplate");
       var rotateDeg = (prizeList.length - choosenIndex) * 360 / prizeList.length + 360 * 5;
       this.setState({
-        lastRotateDeg: lastRotateDeg + 360 * 3,
+        lastRotateDeg: lastRotateDeg + 360 * 6,
         rotating: true,
         justRotate: false
       });
@@ -329,7 +326,7 @@ ReactTurnPlate.propTypes = {
   background_1: _propTypes2.default.string,
   //背景2
   background_2: _propTypes2.default.string,
-  //是否显示奖品的名字
+  //是否显示奖品的名字　
   needShowItemName: _propTypes2.default.bool
 };
 ReactTurnPlate.defaultProps = {

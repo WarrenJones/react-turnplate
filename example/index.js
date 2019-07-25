@@ -3,10 +3,12 @@ import { render } from "react-dom";
 import ReactTurnPlate from "../src/reactTurnPlate";
 
 const reward_list = [
-  { icon: require("../src/img/icon_avocado.png"), name: "avocado", id: 1 },
-  { icon: require("../src/img/icon_doughnut.png"), name: "doughnut", id: 2 },
-  { icon: require("../src/img/icon_pecan.png"), name: "pecan", id: 3 },
-  { icon: require("../src/img/icon_pudding.png"), name: "pudding", id: 4 }
+  { icon: require("../src/img/icon_avocado.png"), name: "avocado1", id: 1 },
+  { icon: require("../src/img/icon_doughnut.png"), name: "doughnut2", id: 2 },
+  { icon: require("../src/img/icon_pecan.png"), name: "pecan3", id: 3 },
+  { icon: require("../src/img/icon_pudding.png"), name: "pudding4", id: 4 },
+  { icon: require("../src/img/icon_pecan.png"), name: "pecan5", id: 5 },
+  { icon: require("../src/img/icon_pudding.png"), name: "pudding6", id: 6 }
 ];
 
 class App extends React.Component {
@@ -31,8 +33,8 @@ class App extends React.Component {
 
     //mock up like requesting backend
     setTimeout(() => {
-      this.setState({ award: reward_list[0] });
-    }, 2000);
+      this.setState({ award:   { icon: require("../src/img/icon_pudding.png"), name: "pudding6", id: 6 }    });
+    }, 1000);
   }
   rotateFinish() {
     alert("congradulations! you got " + this.state.award.name);

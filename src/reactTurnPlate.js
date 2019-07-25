@@ -134,7 +134,7 @@ export default class ReactTurnPlate extends React.Component {
   }
   _initFlash() {
     const { background_1 } = this.props;
-    this.outDiskDiffTimer = 160;
+    this.outDiskDiffTimer = 100;
     this.outShowImg1 = true;
     this._flashTimer = null;
     this.refs.turnplateBorder.style.backgroundImage = `url(${background_1})`;
@@ -177,9 +177,9 @@ export default class ReactTurnPlate extends React.Component {
     }
     const container = document.getElementById("turnplate");
     const rotateDeg =
-      ((prizeList.length - choosenIndex) * 360) / prizeList.length + 360 * 5;
+      ((prizeList.length - choosenIndex) * 360) / prizeList.length + 360 * 2;
     this.setState({
-      lastRotateDeg: lastRotateDeg + 360 * 6,
+      lastRotateDeg: lastRotateDeg + rotateDeg,
       rotating: true,
       justRotate: false
     });
@@ -189,7 +189,7 @@ export default class ReactTurnPlate extends React.Component {
   }
   _justRotate() {
     const container = document.getElementById("turnplate");
-    const rotateDeg = 360 * 6;
+    const rotateDeg = 360 * 3;
     this.setState({
       lastRotateDeg: rotateDeg + this.state.lastRotateDeg,
       rotating: true,
