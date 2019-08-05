@@ -19,14 +19,14 @@ export default class ReactTurnPlate extends React.Component {
     background_1: PropTypes.string,
     //背景2
     background_2: PropTypes.string,
-    //是否显示奖品的名字　
-    needShowItemName:PropTypes.bool
+    //是否显示奖品的名字
+    needShowItemName: PropTypes.bool
   };
 
   static defaultProps = {
     canStartRotate: true,
     prizeList: [],
-    needShowItemName:true
+    needShowItemName: true
   };
 
   _getInitialState() {
@@ -39,7 +39,10 @@ export default class ReactTurnPlate extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return !Object.is(this.state.rotating, nextState.rotating)||this.props.prizeList.length != nextProps.prizeList.length;
+    return (
+      !Object.is(this.state.rotating, nextState.rotating) ||
+      this.props.prizeList.length != nextProps.prizeList.length
+    );
   }
   UNSAFE_componentWillReceiveProps(nextProps, nextState) {
     if (this.props.prizeList.length != nextProps.prizeList.length) {
@@ -141,13 +144,15 @@ export default class ReactTurnPlate extends React.Component {
   }
 
   _getTurnPrizeList() {
-    const { prizeList,needShowItemName } = this.props;
+    const { prizeList, needShowItemName } = this.props;
     const turnplateList = [];
     for (let i = 0; i < prizeList.length; i++) {
       const turnplateItem = (
         <li className="turnplate-item" key={i}>
           <div style={{ transform: `rotate(${i / prizeList.length}turn)` }}>
-            {needShowItemName&&prizeList[i].name?<div>{prizeList[i].name}</div>:null}
+            {needShowItemName && prizeList[i].name ? (
+              <div>{prizeList[i].name}</div>
+            ) : null}
             <img src={prizeList[i].icon} />
           </div>
         </li>
@@ -200,7 +205,7 @@ export default class ReactTurnPlate extends React.Component {
   }
   finishRotate() {
     const { rotateFinish } = this.props;
-    const { award, justRotate } = this.state;
+    const { award, justRotate, rotating } = this.state;
     //如果奖品来了，并且不是justRotate
     if (award && !justRotate) {
       clearTimeout(this._flashTimer);
@@ -210,6 +215,8 @@ export default class ReactTurnPlate extends React.Component {
     //如果奖品来了，是justRotate,就开始抽
     else if (award && justRotate) {
       this._lottery();
+    } else if (!award && justRotate && !rotating) {
+      return;
     } else {
       //否则就继续等吧兄弟
       this._justRotate();

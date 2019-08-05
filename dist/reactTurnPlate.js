@@ -148,7 +148,7 @@ var ReactTurnPlate = function (_React$Component) {
     value: function _initFlash() {
       var background_1 = this.props.background_1;
 
-      this.outDiskDiffTimer = 160;
+      this.outDiskDiffTimer = 100;
       this.outShowImg1 = true;
       this._flashTimer = null;
       this.refs.turnplateBorder.style.backgroundImage = "url(" + background_1 + ")";
@@ -212,9 +212,9 @@ var ReactTurnPlate = function (_React$Component) {
         }
       }
       var container = document.getElementById("turnplate");
-      var rotateDeg = (prizeList.length - choosenIndex) * 360 / prizeList.length + 360 * 5;
+      var rotateDeg = (prizeList.length - choosenIndex) * 360 / prizeList.length + 360 * 2;
       this.setState({
-        lastRotateDeg: lastRotateDeg + 360 * 6,
+        lastRotateDeg: lastRotateDeg + rotateDeg,
         rotating: true,
         justRotate: false
       });
@@ -225,7 +225,7 @@ var ReactTurnPlate = function (_React$Component) {
     key: "_justRotate",
     value: function _justRotate() {
       var container = document.getElementById("turnplate");
-      var rotateDeg = 360 * 6;
+      var rotateDeg = 360 * 3;
       this.setState({
         lastRotateDeg: rotateDeg + this.state.lastRotateDeg,
         rotating: true,
@@ -239,7 +239,8 @@ var ReactTurnPlate = function (_React$Component) {
       var rotateFinish = this.props.rotateFinish;
       var _state = this.state,
           award = _state.award,
-          justRotate = _state.justRotate;
+          justRotate = _state.justRotate,
+          rotating = _state.rotating;
       //如果奖品来了，并且不是justRotate
 
       if (award && !justRotate) {
@@ -250,6 +251,8 @@ var ReactTurnPlate = function (_React$Component) {
       //如果奖品来了，是justRotate,就开始抽
       else if (award && justRotate) {
           this._lottery();
+        } else if (!award && justRotate && !rotating) {
+          return;
         } else {
           //否则就继续等吧兄弟
           this._justRotate();
@@ -326,7 +329,7 @@ ReactTurnPlate.propTypes = {
   background_1: _propTypes2.default.string,
   //背景2
   background_2: _propTypes2.default.string,
-  //是否显示奖品的名字　
+  //是否显示奖品的名字
   needShowItemName: _propTypes2.default.bool
 };
 ReactTurnPlate.defaultProps = {
