@@ -46,7 +46,7 @@ export default class ReactTurnPlate extends React.Component {
   }
   UNSAFE_componentWillReceiveProps(nextProps, nextState) {
     if (this.props.prizeList.length != nextProps.prizeList.length) {
-      this.draw();
+      this.draw(nextProps.prizeList);
     }
     //如果在请求，还没返回结果，就先转着
     if (
@@ -72,9 +72,8 @@ export default class ReactTurnPlate extends React.Component {
   componentDidMount() {
     this.draw();
   }
-  draw() {
-    const { prizeList } = this.props;
-
+  draw(list) {
+    const  prizeList  = list||this.props.prizeList;
     let rotateDeg = 360 / prizeList.length / 2 + 90, // 扇形回转角度
       ctx;
 

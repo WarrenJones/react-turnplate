@@ -46,7 +46,7 @@ var ReactTurnPlate = function (_React$Component) {
     key: "UNSAFE_componentWillReceiveProps",
     value: function UNSAFE_componentWillReceiveProps(nextProps, nextState) {
       if (this.props.prizeList.length != nextProps.prizeList.length) {
-        this.draw();
+        this.draw(nextProps.prizeList);
       }
       //如果在请求，还没返回结果，就先转着
       if (!this.props.canStartRotate && nextProps.canStartRotate && !nextProps.award) {
@@ -79,10 +79,8 @@ var ReactTurnPlate = function (_React$Component) {
     }
   }, {
     key: "draw",
-    value: function draw() {
-      var prizeList = this.props.prizeList;
-
-
+    value: function draw(list) {
+      var prizeList = list || this.props.prizeList;
       var rotateDeg = 360 / prizeList.length / 2 + 90,
           // 扇形回转角度
       ctx = void 0;

@@ -47,8 +47,8 @@ class App extends React.Component {
           award={award}
           needShowItemName={false}
           image_spin={require("../src/img/btn_spin.png")}
-          background_1={require("../src/img/circle1_img.jpg")}
-          background_2={require("../src/img/circle2_img.jpg")}
+          background_1={require("../src/img/circle1_img.png")}
+          background_2={require("../src/img/circle2_img.png")}
           canStartRotate={canStartRotate}
           onTryRotate={this.onTryRotate.bind(this)}
           rotateFinish={this.rotateFinish.bind(this)}
