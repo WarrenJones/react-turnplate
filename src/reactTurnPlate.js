@@ -134,15 +134,16 @@ export default class ReactTurnPlate extends React.Component {
     }
 
     this._flashTimer = setTimeout(this._outDiscFlash, this.outDiskDiffTimer);
+    // this._flashTimer = this.requestInterval(this._outDiscFlash, this.outDiskDiffTimer);
   }
+
   _initFlash() {
     const { background_1 } = this.props;
-    this.outDiskDiffTimer = 100;
+    this.outDiskDiffTimer = 700;
     this.outShowImg1 = true;
     this._flashTimer = null;
     this.refs.turnplateBorder.style.backgroundImage = `url(${background_1})`;
   }
-
   _getTurnPrizeList() {
     const { prizeList, needShowItemName } = this.props;
     const turnplateList = [];

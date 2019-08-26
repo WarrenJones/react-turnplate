@@ -142,13 +142,14 @@ var ReactTurnPlate = function (_React$Component) {
       }
 
       this._flashTimer = setTimeout(this._outDiscFlash, this.outDiskDiffTimer);
+      // this._flashTimer = this.requestInterval(this._outDiscFlash, this.outDiskDiffTimer);
     }
   }, {
     key: "_initFlash",
     value: function _initFlash() {
       var background_1 = this.props.background_1;
 
-      this.outDiskDiffTimer = 100;
+      this.outDiskDiffTimer = 700;
       this.outShowImg1 = true;
       this._flashTimer = null;
       this.refs.turnplateBorder.style.backgroundImage = "url(" + background_1 + ")";
