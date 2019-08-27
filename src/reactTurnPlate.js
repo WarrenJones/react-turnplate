@@ -34,7 +34,8 @@ export default class ReactTurnPlate extends React.Component {
       rotating: false,
       lastRotateDeg: 0,
       award: null,
-      justRotate: true
+      justRotate: true,
+      lastIndex:0,
     };
   }
 
@@ -73,7 +74,7 @@ export default class ReactTurnPlate extends React.Component {
     this.draw();
   }
   draw(list) {
-    const  prizeList  = list||this.props.prizeList;
+    const prizeList = list || this.props.prizeList;
     let rotateDeg = 360 / prizeList.length / 2 + 90, // 扇形回转角度
       ctx;
 
@@ -170,27 +171,28 @@ export default class ReactTurnPlate extends React.Component {
   }
   _lottery() {
     const { prizeList, award } = this.props;
-    const { lastRotateDeg } = this.state;
+    if (!award) {
+      this._justRotate();
+    }
+    const { lastRotateDeg,lastIndex } = this.state;
     let choosenIndex = 0;
-    if (award) {
-      for (let index = 0; index < prizeList.length; index++) {
-        if (Object.is(prizeList[index].id, award.id)) {
-          choosenIndex = index;
-          break;
-        }
+    for (let index = 0; index < prizeList.length; index++) {
+      if (Object.is(prizeList[index].id, award.id)) {
+        choosenIndex = index;
+        break;
       }
     }
     const container = document.getElementById("turnplate");
     const rotateDeg =
-      ((prizeList.length - choosenIndex) * 360) / prizeList.length + 360 * 2;
+      ((prizeList.length - choosenIndex+lastIndex) * 360) / prizeList.length + 360 * 2;
+    container.style.transform =
+      "rotate(" + (rotateDeg + lastRotateDeg) + "deg)";
     this.setState({
       lastRotateDeg: lastRotateDeg + rotateDeg,
       rotating: true,
-      justRotate: false
+      justRotate: false,
+      lastIndex:choosenIndex
     });
-
-    container.style.transform =
-      "rotate(" + (rotateDeg + lastRotateDeg) + "deg)";
   }
   _justRotate() {
     const container = document.getElementById("turnplate");

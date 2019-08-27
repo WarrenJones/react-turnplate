@@ -34,7 +34,8 @@ var ReactTurnPlate = function (_React$Component) {
         rotating: false,
         lastRotateDeg: 0,
         award: null,
-        justRotate: true
+        justRotate: true,
+        lastIndex: 0
       };
     }
   }, {
@@ -199,26 +200,30 @@ var ReactTurnPlate = function (_React$Component) {
       var _props3 = this.props,
           prizeList = _props3.prizeList,
           award = _props3.award;
-      var lastRotateDeg = this.state.lastRotateDeg;
+
+      if (!award) {
+        this._justRotate();
+      }
+      var _state = this.state,
+          lastRotateDeg = _state.lastRotateDeg,
+          lastIndex = _state.lastIndex;
 
       var choosenIndex = 0;
-      if (award) {
-        for (var index = 0; index < prizeList.length; index++) {
-          if (Object.is(prizeList[index].id, award.id)) {
-            choosenIndex = index;
-            break;
-          }
+      for (var index = 0; index < prizeList.length; index++) {
+        if (Object.is(prizeList[index].id, award.id)) {
+          choosenIndex = index;
+          break;
         }
       }
       var container = document.getElementById("turnplate");
-      var rotateDeg = (prizeList.length - choosenIndex) * 360 / prizeList.length + 360 * 2;
+      var rotateDeg = (prizeList.length - choosenIndex + lastIndex) * 360 / prizeList.length + 360 * 2;
+      container.style.transform = "rotate(" + (rotateDeg + lastRotateDeg) + "deg)";
       this.setState({
         lastRotateDeg: lastRotateDeg + rotateDeg,
         rotating: true,
-        justRotate: false
+        justRotate: false,
+        lastIndex: choosenIndex
       });
-
-      container.style.transform = "rotate(" + (rotateDeg + lastRotateDeg) + "deg)";
     }
   }, {
     key: "_justRotate",
@@ -236,10 +241,10 @@ var ReactTurnPlate = function (_React$Component) {
     key: "finishRotate",
     value: function finishRotate() {
       var rotateFinish = this.props.rotateFinish;
-      var _state = this.state,
-          award = _state.award,
-          justRotate = _state.justRotate,
-          rotating = _state.rotating;
+      var _state2 = this.state,
+          award = _state2.award,
+          justRotate = _state2.justRotate,
+          rotating = _state2.rotating;
       //如果奖品来了，并且不是justRotate
 
       if (award && !justRotate) {
