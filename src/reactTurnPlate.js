@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {requestTimeout,clearRequestTimeout} from './utils'
 import "./turnplate.scss";
 export default class ReactTurnPlate extends React.Component {
   static propTypes = {
@@ -133,9 +134,14 @@ export default class ReactTurnPlate extends React.Component {
       this.refs.turnplateBorder.style.backgroundImage = `url(${background_2})`;
     }
 
-    this._flashTimer = setTimeout(this._outDiscFlash, this.outDiskDiffTimer);
-    // this._flashTimer = this.requestInterval(this._outDiscFlash, this.outDiskDiffTimer);
+    this._flashTimer = requestTimeout(this._outDiscFlash, this.outDiskDiffTimer);
   }
+  componentWillUnmount(){
+    if(this._flashTimer){
+      clearRequestTimeout(this._flashTimer);
+    }
+  }
+
 
   _initFlash() {
     const { background_1 } = this.props;
@@ -210,7 +216,7 @@ export default class ReactTurnPlate extends React.Component {
     const { award, justRotate, rotating } = this.state;
     //如果奖品来了，并且不是justRotate
     if (award && !justRotate) {
-      clearTimeout(this._flashTimer);
+      clearRequestTimeout(this._flashTimer);
       this.setState({ rotating: false });
       rotateFinish(award);
     }
