@@ -14,6 +14,8 @@ var _propTypes = require("prop-types");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _utils = require("./utils");
+
 require("./turnplate.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -140,8 +142,14 @@ var ReactTurnPlate = function (_React$Component) {
         this.refs.turnplateBorder.style.backgroundImage = "url(" + background_2 + ")";
       }
 
-      this._flashTimer = setTimeout(this._outDiscFlash, this.outDiskDiffTimer);
-      // this._flashTimer = this.requestInterval(this._outDiscFlash, this.outDiskDiffTimer);
+      this._flashTimer = (0, _utils.requestTimeout)(this._outDiscFlash, this.outDiskDiffTimer);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      if (this._flashTimer) {
+        (0, _utils.clearRequestTimeout)(this._flashTimer);
+      }
     }
   }, {
     key: "_initFlash",
@@ -248,7 +256,7 @@ var ReactTurnPlate = function (_React$Component) {
       //如果奖品来了，并且不是justRotate
 
       if (award && !justRotate) {
-        clearTimeout(this._flashTimer);
+        (0, _utils.clearRequestTimeout)(this._flashTimer);
         this.setState({ rotating: false });
         rotateFinish(award);
       }
